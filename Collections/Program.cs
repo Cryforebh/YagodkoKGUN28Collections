@@ -28,10 +28,10 @@ namespace Collections
             {
                 int numberElement = 0;
 
-                AllList();
-
                 do
                 {
+                    AllList();
+
                     Console.Write($"\nВведите название нового действия (что хотите отрезать у мертвой туши животного?)\nПример - {_list[0]}: ");
                     _list.Add(Console.ReadLine());
 
@@ -42,20 +42,42 @@ namespace Collections
 
                 //..........................................................................
 
-                AllList();
+                Console.Write("\nЕсли желаете дабавить новое действие в определенное место списка, введите yes/да: ");
+                _rep = Console.ReadLine();
+
+                while (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") 
+                {
+                    AllList();
+
+                    Console.WriteLine("\nПод каким номером должно расположиться новое действие?"); numberElement = ReadNumber();
+                    Console.Write($"\nВведите название нового действия, которое расположиться перед - {_list[numberElement]}: ");
+                    _list.Insert(numberElement, Console.ReadLine());
+
+
+                    Console.Write("\nЕсли желаете добавить еще какое-то действие в определенное место списка, введите yes/да: ");
+                    _rep = Console.ReadLine();
+                }
+
+                //..........................................................................
 
                 Console.Write("\nЕсли желаете изменить конкретное действие, введите yes/да: ");
                 _rep = Console.ReadLine();
 
-                while (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") ;
+                while (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") 
                 {
-                    Console.WriteLine("Номер какого действия желаете изменить?"); numberElement = ReadNumber();
+                    AllList();
+
+                    Console.WriteLine("\nНомер какого действия желаете изменить?"); numberElement = ReadNumber();
                     Console.Write($"\nВведите название нового действия для замены старого ({_list[numberElement]}): ");
                     _list[numberElement] = Console.ReadLine();
 
                     Console.Write("\nЕсли желаете изменить еще какое-то действие, введите yes/да: ");
                     _rep = Console.ReadLine();
                 }
+
+                //..........................................................................
+
+                AllList();
 
                 Console.Write("\nЕсли желаете повторить задачу введите да/yes: ");
                 _rep = Console.ReadLine();
@@ -125,12 +147,11 @@ namespace Collections
                 Console.Write("\nЕсли вы ходите узнать оценку конкретного студента, введите да/yes: ");
                 _rep = Console.ReadLine();
 
-                while (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") ;
+                while (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") 
                 {
-                    Console.Write("Укажите имя студента, чтобы узнать его среднюю оценку: ");
+                    Console.Write("\nУкажите имя студента, чтобы узнать его среднюю оценку: ");
 
                     _name = Console.ReadLine();
-                    Console.Write("\n");
 
                     while (!_dictionary.ContainsKey(_name))
                     {
@@ -138,7 +159,7 @@ namespace Collections
                         _name = Console.ReadLine();
                     }
 
-                    Console.WriteLine($"{_name} имеет среднюю оценку - {_dictionary[_name]}.");
+                    Console.WriteLine($"\n{_name} имеет среднюю оценку - {_dictionary[_name]}.");
 
                     Console.Write("\nЕсли вы ходите узнать оценку другого студента, введите да/yes: ");
                     _rep = Console.ReadLine();
@@ -146,7 +167,7 @@ namespace Collections
 
                 Console.Write("\nЕсли желаете вывести список всех студентов, введите да/yes: ");
                 _rep = Console.ReadLine();
-                if (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") ;
+                if (_rep == "yes" || _rep == "да" || _rep == "lf" || _rep == "нуы") 
                 {
                     foreach (var item in _dictionary)
                     {
